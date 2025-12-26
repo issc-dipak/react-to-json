@@ -1,38 +1,262 @@
-.App {
-  text-align: center;
+/* =======================
+   RESET & BASE
+======================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+html,
+body {
+  width: 100%;
+  height: 100%;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+body {
+  font-family: "Segoe UI", Tahoma, sans-serif;
+  background: linear-gradient(135deg, #e3f2fd, #fce4ec);
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: center;
 }
 
-.App-link {
-  color: #61dafb;
+/* =======================
+   APP WRAPPER
+======================= */
+.app-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
 }
 
-@keyframes App-logo-spin {
+/* =======================
+   CARD (PREMIUM LOOK)
+======================= */
+.card {
+  width: 100%;
+  max-width: 540px;
+  padding: 34px;
+  border-radius: 22px;
+
+  background: linear-gradient(145deg, #ffffff, #f8f9ff);
+
+  box-shadow:
+    0 30px 60px rgba(79, 70, 229, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.6);
+
+  border: 1px solid rgba(79, 70, 229, 0.15);
+
+  animation: cardPop 0.5s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px) scale(1.01);
+  box-shadow:
+    0 40px 80px rgba(79, 70, 229, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+/* =======================
+   HEADER
+======================= */
+.header {
+  text-align: center;
+  margin-bottom: 28px;
+}
+
+.header h1 {
+  font-size: 26px;
+  font-weight: 700;
+  background: linear-gradient(90deg, #4f46e5, #6366f1);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.header p {
+  font-size: 14px;
+  color: #6b7280;
+  margin-top: 6px;
+}
+
+/* =======================
+   UPLOAD AREA
+======================= */
+.upload-area {
+  border: 2px dashed #6366f1;
+  border-radius: 18px;
+  padding: 38px 22px;
+  text-align: center;
+  background: #f9faff;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.upload-area:hover {
+  background: #eef2ff;
+  border-color: #4f46e5;
+}
+
+.upload-icon {
+  font-size: 46px;
+  margin-bottom: 12px;
+}
+
+.upload-area h3 {
+  font-size: 17px;
+  font-weight: 600;
+  color: #374151;
+}
+
+.hint {
+  display: block;
+  font-size: 13px;
+  color: #6b7280;
+  margin: 6px 0 16px;
+}
+
+/* =======================
+   BUTTONS
+======================= */
+button {
+  padding: 11px 26px;
+  border-radius: 12px;
+  border: none;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+button:not(.secondary-btn) {
+  background: linear-gradient(135deg, #4f46e5, #6366f1);
+  color: #ffffff;
+  box-shadow: 0 10px 25px rgba(79, 70, 229, 0.4);
+}
+
+button:not(.secondary-btn):hover {
+  transform: translateY(-1px);
+  box-shadow: 0 15px 35px rgba(79, 70, 229, 0.55);
+}
+
+.secondary-btn {
+  background: #e5e7eb;
+  color: #111827;
+}
+
+.secondary-btn:hover {
+  background: #d1d5db;
+}
+
+/* =======================
+   PROGRESS
+======================= */
+.progress-wrapper {
+  margin-top: 20px;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 10px;
+  background: #e5e7eb;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #22c55e, #4ade80);
+  transition: width 0.3s ease;
+}
+
+.progress-wrapper span {
+  display: block;
+  margin-top: 6px;
+  font-size: 13px;
+  color: #374151;
+}
+
+/* =======================
+   ERROR
+======================= */
+.error-text {
+  margin-top: 14px;
+  text-align: center;
+  font-size: 14px;
+  color: #dc2626;
+}
+
+/* =======================
+   RESULT
+======================= */
+.result-box {
+  margin-top: 26px;
+  animation: slideUp 0.4s ease;
+}
+
+.result-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 14px;
+}
+
+.result-header h2 {
+  font-size: 18px;
+  color: #1f2937;
+}
+
+/* =======================
+   JSON OUTPUT
+======================= */
+pre {
+  background: linear-gradient(180deg, #020617, #020617);
+  color: #e5e7eb;
+  padding: 18px;
+  border-radius: 14px;
+  font-size: 13px;
+  max-height: 320px;
+  overflow-y: auto;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+}
+
+/* Scrollbar */
+pre::-webkit-scrollbar {
+  width: 6px;
+}
+
+pre::-webkit-scrollbar-thumb {
+  background: #475569;
+  border-radius: 10px;
+}
+
+/* =======================
+   ANIMATIONS
+======================= */
+@keyframes cardPop {
   from {
-    transform: rotate(0deg);
+    opacity: 0;
+    transform: translateY(14px) scale(0.95);
   }
+
   to {
-    transform: rotate(360deg);
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
