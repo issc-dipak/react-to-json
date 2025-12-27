@@ -1,98 +1,71 @@
-/* =======================
-   RESET & BASE
-======================= */
+/* ================== RESET ================== */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-html,
-body {
-  width: 100%;
-  height: 100%;
+html {
+  font-size: 16px;
 }
 
 body {
-  font-family: "Segoe UI", Tahoma, sans-serif;
-  background: linear-gradient(135deg, #e3f2fd, #fce4ec);
+  min-height: 100vh;
+  font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  background:
+    radial-gradient(circle at 20% 20%, #e0e7ff, transparent 40%),
+    radial-gradient(circle at 80% 80%, #fde2f3, transparent 40%),
+    linear-gradient(135deg, #eef2ff, #fdf2f8);
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
+  padding: 24px;
+  color: #111827;
 }
 
-/* =======================
-   APP WRAPPER
-======================= */
-.app-wrapper {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 20px;
-}
-
-/* =======================
-   CARD (PREMIUM LOOK)
-======================= */
+/* ================== CARD ================== */
 .card {
   width: 100%;
-  max-width: 540px;
-  padding: 34px;
-  border-radius: 22px;
-
-  background: linear-gradient(145deg, #ffffff, #f8f9ff);
+  max-width: 560px;
+  padding: 48px 44px;
+  border-radius: 26px;
+  background: #ffffff;
+  border: 1px solid rgba(99, 102, 241, 0.15);
 
   box-shadow:
-    0 30px 60px rgba(79, 70, 229, 0.25),
-    inset 0 1px 0 rgba(255, 255, 255, 0.6);
-
-  border: 1px solid rgba(79, 70, 229, 0.15);
-
-  animation: cardPop 0.5s ease;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.card:hover {
-  transform: translateY(-4px) scale(1.01);
-  box-shadow:
-    0 40px 80px rgba(79, 70, 229, 0.35),
+    0 40px 90px rgba(79, 70, 229, 0.25),
     inset 0 1px 0 rgba(255, 255, 255, 0.8);
+
+  animation: fadeUp 0.6s ease;
 }
 
-/* =======================
-   HEADER
-======================= */
+/* ================== HEADER ================== */
 .header {
   text-align: center;
-  margin-bottom: 28px;
+  margin-bottom: 36px;
 }
 
 .header h1 {
-  font-size: 26px;
-  font-weight: 700;
-  background: linear-gradient(90deg, #4f46e5, #6366f1);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  font-size: 1.8rem;
+  font-weight: 800;
+  letter-spacing: -0.4px;
+  color: #4f46e5;
 }
 
 .header p {
-  font-size: 14px;
+  font-size: 0.95rem;
+  margin-top: 10px;
   color: #6b7280;
-  margin-top: 6px;
 }
 
-/* =======================
-   UPLOAD AREA
-======================= */
+/* ================== UPLOAD AREA ================== */
 .upload-area {
-  border: 2px dashed #6366f1;
-  border-radius: 18px;
-  padding: 38px 22px;
+  border: 2px dashed rgba(79, 70, 229, 0.6);
+  border-radius: 22px;
+  padding: 42px 28px;
   text-align: center;
-  background: #f9faff;
+  background: #f8faff;
   transition: all 0.3s ease;
-  position: relative;
 }
 
 .upload-area:hover {
@@ -101,66 +74,59 @@ body {
 }
 
 .upload-icon {
-  font-size: 46px;
-  margin-bottom: 12px;
+  font-size: 3.2rem;
+  margin-bottom: 16px;
 }
 
 .upload-area h3 {
-  font-size: 17px;
-  font-weight: 600;
-  color: #374151;
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 6px;
 }
 
 .hint {
-  display: block;
-  font-size: 13px;
+  font-size: 0.85rem;
   color: #6b7280;
-  margin: 6px 0 16px;
+  margin-bottom: 20px;
 }
 
-/* =======================
-   BUTTONS
-======================= */
+/* ================== BUTTON ================== */
 button {
-  padding: 11px 26px;
-  border-radius: 12px;
+  padding: 14px 36px;
+  border-radius: 16px;
   border: none;
-  font-size: 14px;
-  font-weight: 600;
+  background: linear-gradient(135deg, #4f46e5, #7c3aed);
+  color: #fff;
+  font-size: 0.95rem;
+  font-weight: 700;
   cursor: pointer;
+  box-shadow: 0 14px 32px rgba(79, 70, 229, 0.45);
   transition: all 0.25s ease;
 }
 
-button:not(.secondary-btn) {
-  background: linear-gradient(135deg, #4f46e5, #6366f1);
-  color: #ffffff;
-  box-shadow: 0 10px 25px rgba(79, 70, 229, 0.4);
-}
-
-button:not(.secondary-btn):hover {
-  transform: translateY(-1px);
-  box-shadow: 0 15px 35px rgba(79, 70, 229, 0.55);
+button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 22px 46px rgba(79, 70, 229, 0.6);
 }
 
 .secondary-btn {
   background: #e5e7eb;
   color: #111827;
+  box-shadow: none;
 }
 
 .secondary-btn:hover {
   background: #d1d5db;
 }
 
-/* =======================
-   PROGRESS
-======================= */
+/* ================== PROGRESS ================== */
 .progress-wrapper {
-  margin-top: 20px;
+  margin-top: 22px;
 }
 
 .progress-bar {
   width: 100%;
-  height: 10px;
+  height: 12px;
   background: #e5e7eb;
   border-radius: 10px;
   overflow: hidden;
@@ -168,91 +134,75 @@ button:not(.secondary-btn):hover {
 
 .progress-fill {
   height: 100%;
-  width: 0%;
   background: linear-gradient(90deg, #22c55e, #4ade80);
   transition: width 0.3s ease;
 }
 
-.progress-wrapper span {
-  display: block;
-  margin-top: 6px;
-  font-size: 13px;
-  color: #374151;
-}
-
-/* =======================
-   ERROR
-======================= */
+/* ================== ERROR ================== */
 .error-text {
-  margin-top: 14px;
+  margin-top: 18px;
   text-align: center;
-  font-size: 14px;
+  font-size: 0.9rem;
+  font-weight: 600;
   color: #dc2626;
 }
 
-/* =======================
-   RESULT
-======================= */
+/* ================== RESULT ================== */
 .result-box {
-  margin-top: 26px;
-  animation: slideUp 0.4s ease;
+  margin-top: 30px;
 }
 
 .result-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 14px;
+  margin-bottom: 12px;
 }
 
 .result-header h2 {
-  font-size: 18px;
-  color: #1f2937;
+  font-size: 1.15rem;
+  font-weight: 700;
 }
 
-/* =======================
-   JSON OUTPUT
-======================= */
+/* ================== JSON OUTPUT ================== */
 pre {
-  background: linear-gradient(180deg, #020617, #020617);
+  background: #020617;
   color: #e5e7eb;
-  padding: 18px;
-  border-radius: 14px;
-  font-size: 13px;
-  max-height: 320px;
+  padding: 20px;
+  border-radius: 16px;
+  font-size: 0.85rem;
+  line-height: 1.6;
+  max-height: 360px;
   overflow-y: auto;
   box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.05);
 }
 
-/* Scrollbar */
-pre::-webkit-scrollbar {
-  width: 6px;
-}
-
-pre::-webkit-scrollbar-thumb {
-  background: #475569;
-  border-radius: 10px;
-}
-
-/* =======================
-   ANIMATIONS
-======================= */
-@keyframes cardPop {
-  from {
-    opacity: 0;
-    transform: translateY(14px) scale(0.95);
+/* ================== RESPONSIVE ================== */
+@media (max-width: 520px) {
+  html {
+    font-size: 14px;
   }
 
-  to {
-    opacity: 1;
-    transform: translateY(0) scale(1);
+  .card {
+    padding: 32px 24px;
+  }
+
+  button {
+    width: 100%;
+  }
+
+  .result-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
   }
 }
 
-@keyframes slideUp {
+/* ================== ANIMATION ================== */
+@keyframes fadeUp {
   from {
     opacity: 0;
-    transform: translateY(12px);
+    transform: translateY(18px);
   }
 
   to {

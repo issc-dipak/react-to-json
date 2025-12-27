@@ -1,6 +1,6 @@
 import { useRef, useState } from "react";
 
-const API_URL = "https://json-converter-3.onrender.com/api/upload";
+const API_URL = "https://json-converter-5.onrender.com/api/upload";
 
 export default function FileUpload() {
   const fileInputRef = useRef();
@@ -10,17 +10,25 @@ export default function FileUpload() {
   const [error, setError] = useState("");
   const [result, setResult] = useState(null);
 
+  // Open file browser
   const browseFile = () => fileInputRef.current.click();
 
+  // File select
   const handleFileChange = (e) => {
-    uploadFile(e.target.files[0]);
+    if (e.target.files.length > 0) {
+      uploadFile(e.target.files[0]);
+    }
   };
 
+  // Drag & drop
   const handleDrop = (e) => {
     e.preventDefault();
-    uploadFile(e.dataTransfer.files[0]);
+    if (e.dataTransfer.files.length > 0) {
+      uploadFile(e.dataTransfer.files[0]);
+    }
   };
 
+  // Upload function
   const uploadFile = (file) => {
     if (!file) return;
 
@@ -45,7 +53,8 @@ export default function FileUpload() {
     xhr.onload = () => {
       setLoading(false);
       if (xhr.status === 200) {
-        setResult(JSON.parse(xhr.responseText));
+        const response = JSON.parse(xhr.responseText);
+        setResult(response); // 🔥 PURE JSON
       } else {
         setError("Upload failed");
       }
@@ -59,6 +68,7 @@ export default function FileUpload() {
     xhr.send(formData);
   };
 
+  // Reset
   const reset = () => {
     setResult(null);
     setProgress(0);
@@ -70,10 +80,10 @@ export default function FileUpload() {
       {/* Header */}
       <div className="header">
         <h1>File to JSON Converter</h1>
-        <p>Upload PDF or Image and get structured JSON data</p>
+        <p>Upload PDF or Image and get JSON data</p>
       </div>
 
-      {/* Upload */}
+      {/* Upload Area */}
       {!result && (
         <div
           className="upload-area"
@@ -89,7 +99,7 @@ export default function FileUpload() {
 
           <div className="upload-icon">📄</div>
           <h3>Drag & Drop your file</h3>
-          <span className="hint">PDF, JPG, PNG • Max 10MB</span>
+          <span className="hint">PDF, JPG, PNG</span>
 
           <button onClick={browseFile}>Browse File</button>
 
@@ -107,6 +117,7 @@ export default function FileUpload() {
         </div>
       )}
 
+      {/* Error */}
       {error && <p className="error-text">{error}</p>}
 
       {/* Result */}
@@ -119,7 +130,8 @@ export default function FileUpload() {
             </button>
           </div>
 
-          <pre>{JSON.stringify({ data: result.data }, null, 2)}</pre>
+          {/* 🔥 FIXED JSON DISPLAY */}
+          <pre>{JSON.stringify(result, null, 2)}</pre>
         </div>
       )}
     </div>
